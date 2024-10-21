@@ -1,0 +1,87 @@
+2
+Exploratory Data Analysis (EDA) Steps
+
+1. Understand the Data
+   - Data Collection: Import the dataset into the environment using libraries like pandas.
+   - View the Dataset: Use commands like `head()`, `tail()`, and `sample()` to get a feel of the data.
+     Example:
+     ```
+     import pandas as pd
+     data = pd.read_csv('data.csv')
+     print(data.head())
+     ```
+
+2. Data Structure & Types
+   - Check Data Types: Use `dtypes` to understand the types of each feature (e.g., integer, float, object).
+   - Shape of the Dataset: Use `shape` to get the number of rows and columns.
+   - Summary Statistics: Use `describe()` for numerical data statistics (mean, median, quartiles).
+     Example:
+     ```
+     print(data.info())
+     print(data.describe())
+     ```
+
+3. Handling Missing Values
+   - Identify Missing Data: Use `isnull()` or `isna()` and `sum()` to find missing values.
+   - Handle Missing Values: Depending on the data, you can:
+     - Drop missing values (`dropna()`).
+     - Impute missing values (fill with mean, median, mode, or use interpolation).
+     Example:
+     ```
+     print(data.isnull().sum())
+     data.fillna(data.mean(), inplace=True)
+     ```
+
+4. Duplicate Data
+   - Check for Duplicates: Use `duplicated()` to find duplicate rows.
+   - Remove Duplicates: Use `drop_duplicates()` to remove duplicate entries.
+     Example:
+     ```
+     data.drop_duplicates(inplace=True)
+     ```
+
+5. Univariate Analysis
+   - Distribution of Variables: Use histograms (`hist()`), boxplots (`boxplot()`), or value counts (`value_counts()`) to understand the distribution of each feature.
+   - Outliers: Identify outliers using boxplots or statistical methods like Z-scores.
+     Example:
+     ```
+     import seaborn as sns
+     import matplotlib.pyplot as plt
+     sns.boxplot(x=data['column'])
+     plt.show()
+     ```
+
+6. Multivariate Analysis
+   - Correlation Analysis: Use `corr()` and heatmaps to visualize relationships between variables.
+   - Scatter Plots: For visualizing relationships between two numerical variables.
+     Example:
+     ```
+     sns.heatmap(data.corr(), annot=True, cmap='coolwarm')
+     plt.show()
+     ```
+
+7. Categorical vs Numerical Analysis
+   - Categorical Data: Analyze categorical columns using `value_counts()` and bar plots (`countplot()`).
+   - Numerical Data: For continuous data, check distributions using histograms or kernel density plots.
+     Example:
+     ```
+     sns.countplot(x='category_column', data=data)
+     plt.show()
+     ```
+
+8. Feature Engineering
+   - Create New Features: Based on domain knowledge or patterns, create new columns or features.
+   - Encoding Categorical Variables: Use methods like one-hot encoding (`pd.get_dummies()`) for categorical data.
+
+9. Dimensionality Reduction (Optional)
+   - If there are too many features, use techniques like **Principal Component Analysis (PCA)** to reduce dimensionality.
+
+10. Visualization
+   - Visualize Relationships: Use pair plots (`pairplot()`), bar charts, or line charts to explore how features interact with each other.
+     Example:
+     ```
+     sns.pairplot(data)
+     plt.show()
+     ```
+
+By following these steps, you can uncover important insights and prepare your dataset for modeling.
